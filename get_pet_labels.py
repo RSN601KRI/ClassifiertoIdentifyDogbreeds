@@ -23,6 +23,7 @@ from os import listdir
 #       in the return statement with results_dic dictionary that you create 
 #       with this function
 # 
+import os
 def get_pet_labels(image_dir):
     """
     Creates a dictionary of pet labels (results_dic) based upon the filenames 
@@ -41,33 +42,21 @@ def get_pet_labels(image_dir):
          index 0 = pet image label (string)
     """
     in_files = listdir(image_dir)
-    results_dic = dict()
+    results_dic = {}
 
-    for idx in range(0, len(in_files), 1):
+    for file_name in in_files:
+        # Skip files starting with '.'
+        if file_name.startswith('.'):
+            continue
+        
+        # Extract pet label from filename
+        # Split by underscore and join with space
+        pet_name = ' '.join(file_name.split('_')[:-1]).lower().strip()
 
-      # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
-       # isn't an pet image file
-       if in_files[idx][0] != ".":
-
-           # TODO: 2a. BELOW REPLACE pass with CODE that will process each 
-           #          filename in the in_files list to extract the dog breed 
-           #          name from the filename. Recall that each filename can be
-           #          accessed by in_files[idx]. Be certain to place the 
-           #          extracted dog breed name in the variable pet_label 
-           #          that's created as an empty string ABOVE
-           low_pet_image = in_files[idx].lower()
-           word_list_pet_image = low_pet_image.split("_")
-           pet_name = ""
-           for word in word_list_pet_image:
-               if word.isalpha():
-                   pet_name += word + " "
-           pet_name = pet_name.strip()
-           if in_files[idx] not in results_dic:
-              results_dic[in_files[idx]] = [pet_name]
-              
-           else:
-            print("** Warning: Duplicate files exist in directory:", 
-                in_files[idx])
-
+        # Check for duplicate entries
+        if file_name not in results_dic:
+            results_dic[file_name] = [pet_name]
+        else:
+            print(f"** Warning: Duplicate files exist in directory: {file_name}")
 
     return results_dic

@@ -1,25 +1,25 @@
 
 Pet Image Label Dictionary has 4 key-value pairs.
 Below are 4 of them:
- 1 key:                     Dog_01.jpg  label:                        dog
- 2 key:                    Frog_01.jpg  label:                       frog
- 3 key:                     Dog_02.jpg  label:                        dog
- 4 key:                  Bucket_01.jpg  label:                     bucket
-{'Dog_01.jpg': ['dog', 'german shepherd, german shepherd dog, german police dog, alsatian', 1], 'Frog_01.jpg': ['frog', 'tailed frog, bell toad, ribbed toad, tailed toad, ascaphus trui', 1], 'Dog_02.jpg': ['dog', 'german shepherd, german shepherd dog, german police dog, alsatian', 1], 'Bucket_01.jpg': ['bucket', 'bucket, pail', 1]}
+ 1 key:                    Frog_01.jpg  label:                       frog
+ 2 key:                  Bucket_01.jpg  label:                     bucket
+ 3 key:                     Dog_01.jpg  label:                        dog
+ 4 key:                     Dog_02.jpg  label:                        dog
+{'Frog_01.jpg': ['frog', 'tailed frog, bell toad, ribbed toad, tailed toad, ascaphus trui', 1], 'Bucket_01.jpg': ['bucket', 'bucket, pail', 1], 'Dog_01.jpg': ['dog', 'german shepherd, german shepherd dog, german police dog, alsatian', 1], 'Dog_02.jpg': ['dog', 'german shepherd, german shepherd dog, german police dog, alsatian', 1]}
 
      MATCH:
-
-                    Dog_01.jpg: 
-Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian
 
                    Frog_01.jpg: 
 Real:                       frog   Classifier: tailed frog, bell toad, ribbed toad, tailed toad, ascaphus trui
 
-                    Dog_02.jpg: 
-Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian
-
                  Bucket_01.jpg: 
 Real:                     bucket   Classifier:                   bucket, pail
+
+                    Dog_01.jpg: 
+Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian
+
+                    Dog_02.jpg: 
+Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian
 
  NOT A MATCH:
 
@@ -27,21 +27,21 @@ Real:                     bucket   Classifier:                   bucket, pail
 
      MATCH:
 
-                    Dog_01.jpg: 
-Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian  
-PetLabelDog: 1  ClassLabelDog: 1
-
                    Frog_01.jpg: 
 Real:                       frog   Classifier: tailed frog, bell toad, ribbed toad, tailed toad, ascaphus trui  
 PetLabelDog: 0  ClassLabelDog: 0
 
-                    Dog_02.jpg: 
-Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian  
-PetLabelDog: 1  ClassLabelDog: 1
-
                  Bucket_01.jpg: 
 Real:                     bucket   Classifier:                   bucket, pail  
 PetLabelDog: 0  ClassLabelDog: 0
+
+                    Dog_01.jpg: 
+Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian  
+PetLabelDog: 1  ClassLabelDog: 1
+
+                    Dog_02.jpg: 
+Real:                        dog   Classifier: german shepherd, german shepherd dog, german police dog, alsatian  
+PetLabelDog: 1  ClassLabelDog: 1
 
  NOT A MATCH:
 
@@ -61,9 +61,9 @@ N Images            :   4
 N Dog Images        :   2
 N Not-Dog Images    :   2
  
-pct_match: 100.0
-pct_correct_dogs: 100.0
-pct_correct_breed: 100.0
-pct_correct_notdogs: 100.0
+pct_match           : 100.00
+pct_correct_dogs    : 100.00
+pct_correct_breed   : 100.00
+pct_correct_notdogs : 100.00
 
-** Total Elapsed Runtime: 0:0:0
+Total Elapsed Runtime: 0:0:2

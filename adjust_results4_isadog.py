@@ -67,30 +67,25 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
     """  
-    dognames_dic = dict()
-    
-    with open(dogfile, "r") as infile:
-        line = infile.readline()
-        
-        while line != "":
-            line = line.rstrip()
-            if line in dognames_dic:
-                None
-            else:
-                dognames_dic[line] = 1
-                
-            line = infile.readline()    
+    # Create a set of dog names for quick lookup
+    dog_names_set = set()
 
-        # Check to see if results_dic items are dogs
-        for key in results_dic:
-            if results_dic[key][0] in dognames_dic:
-                if results_dic[key][1] in dognames_dic:
-                    results_dic[key].extend((1, 1))
-                else:
-                    results_dic[key].extend((1,0))
-            else:
-                if results_dic[key][1] in dognames_dic:
-                    results_dic[key].extend((0,1))
-                else:
-                    results_dic[key].extend((0,0))         
-    None
+    # Read the dog names from the file and add to the set
+    with open(dogfile, "r") as f:
+        for line in f:
+            dog_names_set.add(line.strip())
+
+    # Iterate over the results dictionary to determine if labels are dogs
+    for key, value in results_dic.items():
+        pet_label_is_dog = 1 if value[0] in dog_names_set else 0
+        
+        # Split the classifier label by commas and check each term
+        classifier_labels = value[1].split(", ")
+        classifier_label_is_dog = 0
+        for label in classifier_labels:
+            if label in dog_names_set:
+                classifier_label_is_dog = 1
+                break
+
+        # Append the new information to the results dictionary
+        results_dic[key].extend([pet_label_is_dog, classifier_label_is_dog])

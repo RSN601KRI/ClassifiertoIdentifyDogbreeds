@@ -20,7 +20,7 @@
 #           of the pet and classifier labels as the item at index 2 of the list.
 #
 ##
-# Imports classifier function for using CNN to classify images 
+# Imports classifier function for using CNN to classify images
 from classifier import classifier 
 
 # TODO 3: Define classify_images function below, specifically replace the None
@@ -29,6 +29,7 @@ from classifier import classifier
 #       results_dic dictionary that is passed into the function is a mutable 
 #       data type so no return is needed.
 # 
+import os
 def classify_images(images_dir, results_dic, model):
     """
     Creates classifier labels with classifier function, compares pet labels to 
@@ -66,30 +67,19 @@ def classify_images(images_dir, results_dic, model):
            None - results_dic is mutable data type so no return needed.         
     """
     for key in results_dic:
-        model_label = ""
-        classified = classifier(images_dir+'/'+key,model)
- 
-        low_pet_image = classified.lower()
+        # Call the classifier function to classify the image
+        classified = classifier(images_dir + '/' + key, model)
         
-
-        word_list_pet_image = low_pet_image
-        """
-        pet_name = ""
+        # Convert the classifier result to lowercase and strip any leading/trailing whitespace
+        model_label = classified.lower().strip()
         
-        for word in word_list_pet_image:
-            if word.isalpha():
-                pet_name += word + " " """
-        low_pet_image = low_pet_image.strip()
-        #print("Classifier: " + low_pet_image)
-        model_label = low_pet_image
-        
-        #results_dic[key].append(model_label)
+        # Get the truth label from the results dictionary
         truth = results_dic[key][0]
         
-        # Classifier Label
+        # Check if the truth label is in the classifier's result
         if truth in model_label:
-           results_dic[key].extend((model_label,1))
+            results_dic[key].extend((model_label, 1))
         else:
-           results_dic[key].extend((model_label,0))
-        
+            results_dic[key].extend((model_label, 0))
+    
     print(results_dic)
